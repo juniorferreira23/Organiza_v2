@@ -1,79 +1,118 @@
 {
-    "users": [
+  "users": [
+    {
+      "id": "1",
+      "name": "junior ferreira",
+      "email": "junior.ferreira@hotmail.com",
+      "password": "123123",
+      "expenses": [
         {
-            "id": 1,
-            "name": "junior ferreira",
-            "email": "junior.ferreira@hotmail.com",
-            "password": "123123",
-            "expenses": [
-                {
-                    "category": "education",
-                    "date": "2024-11-10",
-                    "price": 150.56,
-                    "details": ""
-                }
-            ],
-            "earnings": [
-                {
-                    "date": "2024-11-10",
-                    "price": 200.00,
-                    "details": ""
-                }
-            ],
-            "limits": {
-                "education": 600.00,
-                "leisure": 200.00
-            }
-        },
-        {
-            "id": 2,
-            "name": "maria silva",
-            "email": "maria.silva@gmail.com",
-            "password": "abc456",
-            "expenses": [
-                {
-                    "category": "leisure",
-                    "date": "2024-11-09",
-                    "price": 75.00,
-                    "details": "cinema"
-                }
-            ],
-            "earnings": [
-                {
-                    "date": "2024-11-09",
-                    "price": 500.00,
-                    "details": "salary"
-                }
-            ],
-            "limits": {
-                "education": 300.00,
-                "leisure": 150.00
-            }
-        },
-        {
-            "id": 3,
-            "name": "carlos almeida",
-            "email": "carlos.almeida@yahoo.com",
-            "password": "xyz789",
-            "expenses": [
-                {
-                    "category": "education",
-                    "date": "2024-11-08",
-                    "price": 100.00,
-                    "details": "English course"
-                }
-            ],
-            "earnings": [
-                {
-                    "date": "2024-11-08",
-                    "price": 400.00,
-                    "details": "freelance"
-                }
-            ],
-            "limits": {
-                "education": 500.00,
-                "leisure": 100.00
-            }
+          "category": "education",
+          "date": "2024-11-10",
+          "price": 150.56,
+          "details": ""
         }
-    ]
+      ],
+      "earnings": [
+        {
+          "date": "2024-11-10",
+          "price": 200,
+          "details": ""
+        }
+      ],
+      "limits": {
+        "education": 600,
+        "leisure": 200,
+        "health": 300,
+        "food": 500,
+        "transportation": 150
+      }
+    },
+    {
+      "id": "2",
+      "name": "maria silva",
+      "email": "maria.silva@gmail.com",
+      "password": "abc456",
+      "expenses": [
+        {
+          "category": "leisure",
+          "date": "2024-11-09",
+          "price": 75,
+          "details": "cinema"
+        }
+      ],
+      "earnings": [
+        {
+          "date": "2024-11-09",
+          "price": 500,
+          "details": "salary"
+        }
+      ],
+      "limits": {
+        "education": 300,
+        "leisure": 150,
+        "health": 200,
+        "food": 400,
+        "transportation": 100
+      }
+    },
+    {
+      "id": "3",
+      "name": "carlos almeida",
+      "email": "carlos.almeida@yahoo.com",
+      "password": "xyz789",
+      "expenses": [
+        {
+          "category": "education",
+          "date": "2024-11-08",
+          "price": 100,
+          "details": "English course"
+        }
+      ],
+      "earnings": [
+        {
+          "date": "2024-11-08",
+          "price": 400,
+          "details": "freelance"
+        }
+      ],
+      "limits": {
+        "education": 500,
+        "leisure": 100,
+        "health": 250,
+        "food": 300,
+        "transportation": 120
+      }
+    },
+    {
+      "id": "d88e",
+      "name": "Sergio Silva",
+      "email": "sergio.silva@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "earnings": [],
+      "limits": {
+        "education": 500,
+        "leisure": 500,
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
+    },
+    {
+      "id": "f0dd",
+      "name": "Sergio Silva",
+      "email": "sergio.silva@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "earnings": [],
+      "limits": {
+        "education": 500,
+        "leisure": 500,
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
+    }
+  ]
 }

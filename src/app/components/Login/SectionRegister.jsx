@@ -1,17 +1,17 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const SectionRegister = (props) => {
+const SectionLink = (props) => {
   return (
     <>
       <div className="text-center mt-3">
-        <span>{props.label || "Não tem uma conta?"}</span>
-        <Button variant="link" onClick={() => props.function || console.log("click")}>
-          {props.text || "Registrar"}
+        <span>{props.label}</span>
+        <Button variant="link" onClick={props.onClick}>
+          {props.text}
         </Button>
       </div>
     </>
   );
 };
 
-export default SectionRegister;
+export default SectionLink;
