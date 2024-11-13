@@ -1,0 +1,79 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "junior ferreira",
+            "email": "junior.ferreira@hotmail.com",
+            "password": "123123",
+            "expenses": [
+                {
+                    "category": "education",
+                    "date": "2024-11-10",
+                    "price": 150.56,
+                    "details": ""
+                }
+            ],
+            "earnings": [
+                {
+                    "date": "2024-11-10",
+                    "price": 200.00,
+                    "details": ""
+                }
+            ],
+            "limits": {
+                "education": 600.00,
+                "leisure": 200.00
+            }
+        },
+        {
+            "id": 2,
+            "name": "maria silva",
+            "email": "maria.silva@gmail.com",
+            "password": "abc456",
+            "expenses": [
+                {
+                    "category": "leisure",
+                    "date": "2024-11-09",
+                    "price": 75.00,
+                    "details": "cinema"
+                }
+            ],
+            "earnings": [
+                {
+                    "date": "2024-11-09",
+                    "price": 500.00,
+                    "details": "salary"
+                }
+            ],
+            "limits": {
+                "education": 300.00,
+                "leisure": 150.00
+            }
+        },
+        {
+            "id": 3,
+            "name": "carlos almeida",
+            "email": "carlos.almeida@yahoo.com",
+            "password": "xyz789",
+            "expenses": [
+                {
+                    "category": "education",
+                    "date": "2024-11-08",
+                    "price": 100.00,
+                    "details": "English course"
+                }
+            ],
+            "earnings": [
+                {
+                    "date": "2024-11-08",
+                    "price": 400.00,
+                    "details": "freelance"
+                }
+            ],
+            "limits": {
+                "education": 500.00,
+                "leisure": 100.00
+            }
+        }
+    ]
+}
