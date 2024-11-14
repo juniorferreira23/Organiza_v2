@@ -3,12 +3,11 @@
 import { useState, React } from "react";
 import { useRouter } from 'next/navigation';
 import { Form, Container, Row, Col } from 'react-bootstrap';
-import axios from "axios";
 import InputLabel from "../components/Login/InputLabel";
 import ButtonPrimary from "../components/Login/ButtonPrimary";
 import SectionLink from "../components/Login/SectionRegister";
 import validates from "@/utils/globalValidation";
-//import { findByEmail } from "@Users";
+import { findByEmail, saveData } from "../services/Users";
 
 
 function LoginPage() {
@@ -17,15 +16,6 @@ function LoginPage() {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const router = useRouter();
-
-    const saveData = async (url, data) => {
-        try {
-            const response = await axios.post(url, data);
-            console.log("Dados salvos com sucesso:", response.data);
-        } catch (error) {
-            console.error("Erro ao salvar os dados:", error);
-        }
-    };
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -42,8 +32,6 @@ function LoginPage() {
             return
         }
 
-        const url = 'http://localhost:3001/users'
-
         const data = {
             name: name,
             email: email,
@@ -59,14 +47,15 @@ function LoginPage() {
             }
         }
 
-        // const emailExists = findByEmail(url)
-        // if (emailExists) {
-        //     alert('Email já cadastrado')
-        //     return
-        // }
+        const emailExists = await findByEmail(email)
+        if (emailExists) {
+            alert('Email já cadastrado')
+            return
+        }
 
-        saveData(url, data);
-        //router.push('/')
+        saveData(data);
+        alert('Cadastro realizado com sucesso!')
+        router.push('/')
     };
 
     const handleBack = () => {

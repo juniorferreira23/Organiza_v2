@@ -3,11 +3,11 @@
 import { useState, React } from "react";
 import { useRouter } from 'next/navigation';
 import { Form, Container, Row, Col } from 'react-bootstrap';
-import axios from "axios";
 import ButtonPrimary from './components/Login/ButtonPrimary';
 import InputLabel from './components/Login/InputLabel';
 import SectionLink from './components/Login/SectionRegister';
 import validates from "@/utils/globalValidation";
+import { authLogin } from "./services/Users";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -25,17 +25,13 @@ function LoginPage() {
         return
       }
 
-      // Consultando se existe o e-mail e senha na api users
-      const response = await axios.get(`http://localhost:3001/users`, {
-        params: {
-          email: email,
-          password: password
-        }
-      });
+      const data = {
+        email: email,
+        password: password
+      }
 
-      // Selecionando os dados
-      const user = response.data[0];
-
+      // service Api
+      const user = await authLogin(data)
 
       if (user) {
         // Armazena o usuário no localStorage para simular uma sessão
