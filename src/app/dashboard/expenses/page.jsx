@@ -3,6 +3,9 @@
 import { React, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { authSession } from "../../services/Users";
+import ButtonAdd from "@/app/components/Expenses/ButtonAdd";
+import FormGlobal from "@/app/components/Global/FormGlobal";
+import InputLabel from "@/app/components/Global/InputLabel";
 
 
 function Expenses() {
@@ -22,6 +25,10 @@ function Expenses() {
     }
   }
 
+  const handleForm = () => {
+    console.log('click')
+  }
+
   useEffect(() => {
     auth()
 
@@ -29,6 +36,10 @@ function Expenses() {
 
   return (
     <>
+      <ButtonAdd handle={handleForm}/>
+      <FormGlobal Header={"Adicionar Despesa"}>
+        <InputLabel/>
+      </FormGlobal>
     </>
   );
 }
