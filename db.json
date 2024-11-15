@@ -158,6 +158,21 @@
         "food": 500,
         "transportation": 300
       }
+    },
+    {
+      "id": "1f69",
+      "name": "larissa alves",
+      "email": "larissa.alves@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "earnings": [],
+      "limits": {
+        "education": 500,
+        "leisure": 500,
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
     }
   ]
 }

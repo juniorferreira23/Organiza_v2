@@ -2,10 +2,10 @@
 
 import { React, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { authSession } from "../services/Users";
+import { authSession } from "../../services/Users";
 
 
-function Dashboard() {
+function Expenses() {
   const router = useRouter();
 
   const auth = async () => {
@@ -33,4 +33,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Expenses;

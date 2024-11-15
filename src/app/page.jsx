@@ -6,7 +6,7 @@ import { Form, Container, Row, Col } from 'react-bootstrap';
 import ButtonPrimary from './components/Login/ButtonPrimary';
 import InputLabel from './components/Login/InputLabel';
 import SectionLink from './components/Login/SectionRegister';
-import validates from "@/utils/globalValidation";
+import validates from "@/app/utils/globalValidation";
 import { authLogin } from "./services/Users";
 
 function LoginPage() {
@@ -47,13 +47,12 @@ function LoginPage() {
   };
 
   const handlerRegister = () => {
-    console.log('click register')
     router.push('/register')
   }
 
   return (
     <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-      <Row className="w-100" style={{ maxWidth: '400px' }}>
+      <Row className="w-100 card-form" style={{ maxWidth: '400px' }}>
         <Col>
           <h2 className="text-center mb-4">Login</h2>
           <Form onSubmit={handleLogin}>

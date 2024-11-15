@@ -6,7 +6,7 @@ import { Form, Container, Row, Col } from 'react-bootstrap';
 import InputLabel from "../components/Login/InputLabel";
 import ButtonPrimary from "../components/Login/ButtonPrimary";
 import SectionLink from "../components/Login/SectionRegister";
-import validates from "@/utils/globalValidation";
+import validates from "@/app/utils/globalValidation";
 import { findByEmail, saveData } from "../services/Users";
 
 
@@ -64,7 +64,7 @@ function LoginPage() {
 
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-            <Row className="w-100" style={{ maxWidth: '400px' }}>
+            <Row className="w-100 card-form" style={{ maxWidth: '400px' }}>
                 <Col>
                     <h2 className="text-center mb-4">Registrar</h2>
                     <Form onSubmit={handleRegister}>
