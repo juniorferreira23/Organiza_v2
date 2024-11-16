@@ -69,8 +69,8 @@ function LoginPage() {
         Handle={handleRegister}
         Footer={
           <SectionLink
-            label="Não tem uma conta?"
-            text="Registrar"
+            label="Already have an account?"
+            text="Login"
             onClick={handleBack}
           />
         }

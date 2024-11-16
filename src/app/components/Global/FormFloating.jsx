@@ -1,12 +1,12 @@
 import { Form, Container, Row, Col } from 'react-bootstrap';
 
 
-function FormGlobal({ Header, children, Handle, Footer, Height = "100vh"}) {
+function FormFloanting({ Header, children, Handle, Footer, Height = "100vh"}) {
   return (
     <>
       <Container
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: Height }}
+        className="position-absolute top-50 start-50 translate-middle w-100 ml-3"
+        style={{ minHeight: Height, maxWidth: "400px"}}
       >
         <Row className="w-100 card-form" style={{ maxWidth: "400px" }}>
           <Col>
@@ -22,4 +22,4 @@ function FormGlobal({ Header, children, Handle, Footer, Height = "100vh"}) {
   );
 }
 
-export default FormGlobal;
+export default FormFloanting;

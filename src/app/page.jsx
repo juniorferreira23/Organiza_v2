@@ -58,8 +58,8 @@ function LoginPage() {
         Handle={handleLogin}
         Footer={
           <SectionLink
-            label="Não tem uma conta?"
-            text="Registrar"
+            label="Don't have an account?"
+            text="Register"
             onClick={handlerRegister}
           />
         }
