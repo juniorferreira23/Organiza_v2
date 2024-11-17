@@ -22,7 +22,25 @@ function generateUniqueId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
 }
 
-export const getUser = async (data) => {
+export const getUser = async (id) => {
+  try {
+    // Consultando se existe o e-mail e senha na api users
+    const response = await axios.get(urlUsers, {
+      params: {
+        id: id
+      }
+    });
+
+    // Selecionando os dados
+    const user = response.data[0];
+
+    return user;
+  } catch (error) {
+    console.error("Erro ao consultar o usuário:", error);
+  }
+};
+
+export const authLogin = async (data) => {
   try {
     // Consultando se existe o e-mail e senha na api users
     const response = await axios.get(urlUsers, {
@@ -128,7 +146,7 @@ export const saveExpense = async (id, expense) => {
     const data = response.data[0];
 
     // Convertendo o valor do input strin para number
-    expense.price = parseInt(expense.price);
+    expense.price = parseFloat(expense.price);
 
     // Gerando Id
     expense.id = generateUniqueId();
@@ -157,29 +175,70 @@ export const getExpenses = async (id) => {
   }
 };
 
-export const editExpense = async (id, newExpense) => {
+export const findByIdExpense = async (id, idExpense) => {
   try {
     const validate = validateData(id);
     if (!validate) {
       return;
     }
 
-    const user = getUser(id);
+    const user = await getUser(id);
+    if (!user || !user.expenses) return;
 
-    user.expenses.map((expense) => {
+    // Use `.find()` para retornar o item correspondente
+    const expense = user.expenses.find((expense) => expense.id === idExpense);
+
+    if (!expense) {
+      console.error("Despesa não encontrada");
+      return;
+    }
+
+    return expense;
+  } catch (error) {
+    console.error("Erro ao buscar a despesa por id:", error);
+  }
+};
+
+export const updateExpense = async (id, newExpense) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    user.expenses.forEach((expense) => {
       if (expense.id === newExpense.id) {
-        expense.category = newExpense.category
-        expense.date = newExpense.date
-        expense.price = newExpense.price
-        expense.datails = newExpense.details
+        console.log(expense)
+        expense.category = newExpense.category;
+        expense.date = newExpense.date;
+        expense.price = parseFloat(newExpense.price);
+        expense.details = newExpense.details;
       }
     });
 
     const url = `${urlUsers}/${id}`;
     await axios.put(url, user);
-
-    return;
   } catch (error) {
-    console.error("Erro ao buscar o categorias:", error);
+    console.error("Erro ao atualizar despesa:", error);
+  }
+};
+
+export const deleteExpense = async (id, idExpense) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    user.expenses = user.expenses.filter((expense) => expense.id !== idExpense);
+
+    const url = `${urlUsers}/${id}`;
+    await axios.put(url, user);
+  } catch (error) {
+    console.error("Erro ao atualizar despesa:", error);
   }
 };
