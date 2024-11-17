@@ -4,9 +4,12 @@ import { React, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   authSession,
+  deleteExpense,
+  findByIdExpense,
   getCategories,
   getExpenses,
   saveExpense,
+  updateExpense,
 } from "../../services/Users";
 import ButtonAdd from "@/app/components/Expenses/ButtonAdd";
 import InputLabel from "@/app/components/Global/InputLabel";
@@ -24,7 +27,16 @@ function Expenses() {
   const [optionsSelect, setOptionsSelect] = useState([]);
   const [isToggled, setIsToggled] = useState(false);
   const [expenses, setExpenses] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editExpenseId, setEditExpenseId] = useState(null);
+
   const router = useRouter();
+
+  const getUserId = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const id = user?.id;
+    return id
+  }
 
   const clearInputs = () => {
     setCategoryInput("");
@@ -57,13 +69,24 @@ function Expenses() {
     const user = JSON.parse(localStorage.getItem("user"));
     const id = user.id;
     const expense = {
+      id: editExpenseId,
       category: categoryInput,
       date: dateInput,
       price: priceInput,
       details: descriptionInput,
     };
-    await saveExpense(id, expense);
+
+    if (isEditing && editExpenseId) {
+      // Lógica para atualizar o item existente
+      await updateExpense(id, expense);
+    } else {
+      // Lógica para criar um novo item
+      await saveExpense(id, expense);
+    }
+
     setIsToggled(false);
+    setIsEditing(false);
+    setEditExpenseId(null);
     clearInputs();
   };
 
@@ -86,12 +109,29 @@ function Expenses() {
     }
   };
 
-  const handleEdit = (id) => {
-    console.log(id);
+  const handleEdit = async (idExpense) => {
+    setEditExpenseId(idExpense);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const id = user.id;
+    const expense = await findByIdExpense(id, idExpense);
+
+    setCategoryInput(expense.category);
+    setDateInput(expense.date);
+    setPriceInput(expense.price);
+    setDescriptionInput(expense.details);
+    setEditExpenseId(expense.id);
+    setIsEditing(true);
+
     if (!isToggled) {
       handleToggle();
     }
   };
+
+  const handleDelete = async (idExpense) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const id = user.id;
+    deleteExpense(id, idExpense)
+  }
 
   useEffect(() => {
     auth();
@@ -106,7 +146,7 @@ function Expenses() {
       <ButtonAdd handle={handleToggle} />
       {isToggled ? (
         <FormFloanting
-          Header={"Add Expenses"}
+          Header={isEditing ? "Edit Expense" : "Add Expense"}
           Handle={handleForm}
           Height="80vh"
           HandleClose={handleToggle}
@@ -139,7 +179,7 @@ function Expenses() {
       ) : (
         ""
       )}
-      <TableExpense data={expenses} HandleEdit={handleEdit} />
+      <TableExpense data={expenses} HandleEdit={handleEdit} HandleDelete={handleDelete} />
     </>
   );
 }
