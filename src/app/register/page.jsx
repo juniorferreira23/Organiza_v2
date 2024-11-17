@@ -7,7 +7,7 @@ import InputLabel from "../components/Global/InputLabel";
 import ButtonPrimary from "../components/Global/ButtonPrimary";
 import SectionLink from "../components/Login/SectionRegister";
 import validates from "@/app/utils/globalValidation";
-import { findByEmail, saveData } from "../services/Users";
+import { findByEmail, registerUser } from "../services/Users";
 import FormGlobal from "../components/Global/FormGlobal";
 
 function LoginPage() {
@@ -53,7 +53,7 @@ function LoginPage() {
       return;
     }
 
-    saveData(data);
+    registerUser(data);
     alert("Cadastro realizado com sucesso!");
     router.push("/");
   };
