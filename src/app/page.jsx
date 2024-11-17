@@ -7,7 +7,7 @@ import ButtonPrimary from "./components/Global/ButtonPrimary";
 import InputLabel from "./components/Global/InputLabel";
 import SectionLink from "./components/Login/SectionRegister";
 import validates from "@/app/utils/globalValidation";
-import { authLogin } from "./services/Users";
+import { getUser } from "./services/Users";
 import FormGlobal from "./components/Global/FormGlobal";
 
 function LoginPage() {
@@ -32,7 +32,7 @@ function LoginPage() {
       };
 
       // service Api
-      const user = await authLogin(data);
+      const user = await getUser(data);
 
       if (user) {
         // Armazena o usuário no localStorage para simular uma sessão
