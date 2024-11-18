@@ -57,10 +57,10 @@ function Budget() {
     e.preventDefault()
     const id = getUserId();
     const data = {
-        date: parseInt(dateInput),
-        price: parseInt(priceInput),
-        institution: parseInt(institutionInput),
-        fees: parseInt(feesInput)
+        date: dateInput,
+        price: parseFloat(priceInput),
+        institution: institutionInput,
+        fees: parseFloat(feesInput)
     }
     await saveInvestment(id, data)
     setInvestments([...investments, data])
