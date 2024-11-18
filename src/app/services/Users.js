@@ -24,11 +24,16 @@ function generateUniqueId() {
 
 export const getUser = async (id) => {
   try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
     // Consultando se existe o e-mail e senha na api users
     const response = await axios.get(urlUsers, {
       params: {
-        id: id
-      }
+        id: id,
+      },
     });
 
     // Selecionando os dados
@@ -42,6 +47,11 @@ export const getUser = async (id) => {
 
 export const authLogin = async (data) => {
   try {
+    const validate = validateData(data);
+    if (!validate) {
+      return;
+    }
+
     // Consultando se existe o e-mail e senha na api users
     const response = await axios.get(urlUsers, {
       params: {
@@ -59,11 +69,16 @@ export const authLogin = async (data) => {
   }
 };
 
-export const findByEmail = async (data) => {
+export const findByEmail = async (email) => {
   try {
+    const validate = validateData(email);
+    if (!validate) {
+      return;
+    }
+
     const response = await axios.get(urlUsers, {
       params: {
-        email: data,
+        email: email,
       },
     });
 
@@ -82,8 +97,12 @@ export const findByEmail = async (data) => {
 
 export const registerUser = async (data) => {
   try {
-    const response = await axios.post(urlUsers, data);
-    //console.log("Dados salvos com sucesso:", response.data);
+    const validate = validateData(data);
+    if (!validate) {
+      return;
+    }
+
+    await axios.post(urlUsers, data);
   } catch (error) {
     console.error("Erro ao salvar os dados:", error);
   }
@@ -138,6 +157,11 @@ export const getCategories = async (params) => {
 
 export const saveExpense = async (id, expense) => {
   try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
     const response = await axios.get(urlUsers, {
       params: {
         id: id,
@@ -162,6 +186,11 @@ export const saveExpense = async (id, expense) => {
 
 export const getExpenses = async (id) => {
   try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
     const response = await axios.get(urlUsers, {
       params: {
         id: id,
@@ -210,7 +239,6 @@ export const updateExpense = async (id, newExpense) => {
 
     user.expenses.forEach((expense) => {
       if (expense.id === newExpense.id) {
-        console.log(expense)
         expense.category = newExpense.category;
         expense.date = newExpense.date;
         expense.price = parseFloat(newExpense.price);
@@ -242,3 +270,205 @@ export const deleteExpense = async (id, idExpense) => {
     console.error("Erro ao atualizar despesa:", error);
   }
 };
+
+export const getSumCategories = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const response = await axios.get(urlUsers, {
+      params: {
+        id: id,
+      },
+    });
+
+    const user = response.data[0];
+
+    const categoryTotals = user.expenses.reduce((totals, expense) => {
+      const category = expense.category;
+      const price = parseFloat(expense.price) || 0;
+      if (!totals[category]) {
+        totals[category] = 0;
+      }
+      totals[category] += price;
+      return totals;
+    }, {});
+
+    return categoryTotals;
+  } catch (error) {
+    console.error("Erro ao buscar ou processar dados:", error);
+  }
+};
+
+export const getLimits = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const response = await axios.get(urlUsers, {
+      params: {
+        id: id,
+      },
+    });
+
+    const user = response.data[0];
+    if (!user) {
+      console.error("Usuário não encontrado");
+      return null;
+    }
+
+    const limits = user.limits;
+
+    return limits;
+  } catch (error) {
+    console.error("Erro ao buscar limites", error);
+  }
+};
+
+export const getCategoriesWithLimitsTotals = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const categoriesTotals = await getSumCategories(id);
+    const limits = await getLimits(id);
+
+    if (limits) {
+      const totalsWithLimits = [];
+
+      Object.keys(limits).forEach((key) => {
+        const obj = {
+          category: key,
+          expense: categoriesTotals[key] || 0,
+          limit: limits[key],
+        };
+        totalsWithLimits.push(obj);
+      });
+
+      return totalsWithLimits;
+    }
+  } catch (error) {}
+};
+
+export const updateLimits = async (id, newLimits) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    user.limits = newLimits;
+
+    const url = `${urlUsers}/${id}`;
+    await axios.put(url, user);
+  } catch (error) {
+    console.error("Erro ao atualizar os limites:", error);
+  }
+};
+
+export const saveInvestment = async (id, newInvestment) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    newInvestment.id = generateUniqueId();
+    newInvestment.price = parseFloat(newInvestment.price);
+    newInvestment.fees = parseFloat(newInvestment.fees);
+
+    user.investments.push(newInvestment);
+
+    const url = `${urlUsers}/${id}`;
+    await axios.put(url, user);
+  } catch (error) {
+    console.error("Erro ao salvar o investimento:", error);
+  }
+};
+
+export const getInvestment = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    return user.investments;
+  } catch (error) {
+    console.error("Erro ao buscar os investimentos:", error);
+  }
+};
+
+export const deleteInvestment = async (id, idInvestment) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    user.investments = user.investments.filter((expense) => expense.id !== idInvestment);
+
+    const url = `${urlUsers}/${id}`;
+    await axios.put(url, user);
+  } catch (error) {
+    console.error("Erro ao deletar Investmento:", error);
+  }
+};
+
+export const getTotalExpenses = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    let total = 0
+    user.expenses.forEach((expense) => {
+      total += expense.price
+    })
+
+    return total
+
+  } catch (error) {
+    console.error("Erro ao atualizar despesa:", error);
+  }
+};
+
+export const getTotalInvestments = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    let total = 0
+    user.investments.forEach((investment) => {
+      total += investment.price
+    })
+
+    return total
+
+  } catch (error) {
+    console.error("Erro ao atualizar despesa:", error);
+  }
+};
+
+

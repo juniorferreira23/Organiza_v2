@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 const ButtonAction = ({ Variant, Handle, Text }) => {
   return (
     <>
-      <Button variant={Variant} className="w-55 m-1" type="button" onClick={Handle}>
+      <Button variant={Variant} className="w-55 m-1 shadow-md" type="button" onClick={Handle}>
         {Text}
       </Button>
     </>

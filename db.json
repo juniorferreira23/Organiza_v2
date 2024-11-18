@@ -14,11 +14,13 @@
           "details": ""
         }
       ],
-      "earnings": [
+      "investments": [
         {
+          "id": "1-1",
           "date": "2024-11-10",
           "price": 200,
-          "details": ""
+          "institution": "",
+          "fees": 0
         }
       ],
       "limits": {
@@ -43,11 +45,13 @@
           "details": "cinema"
         }
       ],
-      "earnings": [
+      "investments": [
         {
+          "id": "2-1",
           "date": "2024-11-09",
           "price": 500,
-          "details": "salary"
+          "institution": "",
+          "fees": 0
         }
       ],
       "limits": {
@@ -72,11 +76,13 @@
           "details": "English course"
         }
       ],
-      "earnings": [
+      "investments": [
         {
+          "id": "3-1",
           "date": "2024-11-08",
           "price": 400,
-          "details": "freelance"
+          "institution": "",
+          "fees": 0
         }
       ],
       "limits": {
@@ -134,14 +140,57 @@
           "price": 567,
           "details": "<3 teste",
           "id": "m3kueh4wi81n0nld4"
+        },
+        {
+          "id": "m3lj1kyceqpxiv9zi",
+          "category": "health",
+          "date": "2024-11-17",
+          "price": 765.89,
+          "details": "saúde"
+        },
+        {
+          "id": "m3lj1slgiozte8yoa",
+          "category": "leisure",
+          "date": "2024-11-17",
+          "price": 123,
+          "details": "teste"
+        },
+        {
+          "id": "m3lj2283isc6wm4e8",
+          "category": "transportation",
+          "date": "2024-11-17",
+          "price": 123,
+          "details": "teste"
+        },
+        {
+          "id": "m3m7usa9rin1cfp38",
+          "category": "education",
+          "date": "2024-11-17",
+          "price": 200,
+          "details": "teste"
         }
       ],
-      "earnings": [],
+      "investments": [
+        {
+          "id": "4e5b-1",
+          "date": "2024-11-18",
+          "price": 200,
+          "institution": "Clear invest",
+          "fees": "12"
+        },
+        {
+          "id": "4e5b-2",
+          "date": "2024-11-18",
+          "price": 8000,
+          "institution": "Clear invest",
+          "fees": 40
+        }
+      ],
       "limits": {
         "education": 500,
-        "leisure": 500,
-        "health": 500,
-        "food": 500,
+        "leisure": 1000,
+        "health": 1000,
+        "food": 100,
         "transportation": 300
       }
     },
@@ -151,7 +200,45 @@
       "email": "larissa.soares@gmail.com",
       "password": "123123",
       "expenses": [],
-      "earnings": [],
+      "investments": [],
+      "limits": {
+        "education": 500,
+        "leisure": 1000,
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
+    },
+    {
+      "id": "3ae0",
+      "name": "teste teste",
+      "email": "teste@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "investments": [],
+      "limits": {
+        "education": 500,
+        "leisure": 500,
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
+    },
+    {
+      "id": "85c0",
+      "name": "lais alves",
+      "email": "lais.alves@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "investments": [
+        {
+          "date": "2024-11-18",
+          "price": 123,
+          "institution": "teste",
+          "fees": 12,
+          "id": "m3n9lgv54ftmdb0jb"
+        }
+      ],
       "limits": {
         "education": 500,
         "leisure": 500,

@@ -21,7 +21,8 @@ function Menu() {
             <Nav className="me-auto">
               <Nav.Link href="/dashboard">Home</Nav.Link>
               <Nav.Link href="/dashboard/expenses">Expenses</Nav.Link>
-              <Nav.Link href="/dashboard/Investments">Investments</Nav.Link>
+              <Nav.Link href="/dashboard/budget">Budget</Nav.Link>
+              <Nav.Link href="/dashboard/investments">Investments</Nav.Link>
               <Nav.Link onClick={handlerLogout}>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -1,35 +1,97 @@
-"use client"
+"use client";
 
-import { React, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { authSession } from "../services/Users";
-
+import {
+  authSession,
+  getLimits,
+  getSumCategories,
+  getTotalExpenses,
+  getTotalInvestments,
+} from "../services/Users";
+import { Container, Row, Col } from "react-bootstrap";
+import UserChart from "../components/Dashboard/UserChart";
+import CardDashboard from "../components/Dashboard/CardDashboard";
 
 function Dashboard() {
+  const [limits, setLimits] = useState([]);
+  const [expenses, setExpenses] = useState([]);
+  const [totalExpenses, setTotalExpenses] = useState();
+  const [totalRevenue, setTotalRevenue] = useState();
+
   const router = useRouter();
 
-  const auth = async () => {
-    // Consultar autenticação do usuário
+  const getUserId = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-      router.push('/');
-      return
+    return user?.id;
+  };
+
+  const auth = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || Object.keys(user).length === 0) {
+      router.push("/");
+      return;
     }
 
-    const auth = await authSession(user);
-    if (!auth) {
-      router.push('/');
+    const isAuth = await authSession(user);
+    if (!isAuth) {
+      router.push("/");
     }
-  }
+  };
+
+  const handleExpeses = async () => {
+    const id = getUserId();
+    const response = await getSumCategories(id);
+    // Transformar objeto em array de { name, value }
+    const result = Object.entries(response).map(([key, value]) => ({
+      name: key,
+      value: value,
+    }));
+    setExpenses(result);
+  };
+
+  const handlerLimits = async () => {
+    const id = getUserId();
+    const response = await getLimits(id);
+
+    // Transformar objeto em array de { name, value }
+    const result = Object.entries(response).map(([key, value]) => ({
+      name: key,
+      value: value,
+    }));
+    setLimits(result);
+  };
+
+  const handleTotals = async () => {
+    const id = getUserId();
+    const response = await getTotalExpenses(id);
+    const data = await getTotalInvestments(id);
+    setTotalExpenses(response);
+    setTotalRevenue(data)
+  };
 
   useEffect(() => {
-    auth()
-
-  }, [auth]);
+    auth();
+    handlerLimits();
+    handleExpeses();
+    handleTotals();
+  }, []);
 
   return (
-    <>
-    </>
+    <Container className="py-4">
+      <Row>
+        <CardDashboard Title="Total expenses" Value={totalExpenses} />
+        <CardDashboard Title="Total revenue" Value={totalRevenue} />
+      </Row>
+      <Row>
+        <Col>
+          <UserChart title="Expenses by Category" data={expenses} />
+        </Col>
+        <Col>
+          <UserChart title="Limits by Category" data={limits} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
