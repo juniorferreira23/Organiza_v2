@@ -346,9 +346,9 @@ export const getCategoriesWithLimitsTotals = async (id) => {
         const obj = {
           category: key,
           expense: categoriesTotals[key] || 0,
-          limit: limits[key]
-        }
-        totalsWithLimits.push(obj)
+          limit: limits[key],
+        };
+        totalsWithLimits.push(obj);
       });
 
       return totalsWithLimits;
@@ -371,5 +371,60 @@ export const updateLimits = async (id, newLimits) => {
     await axios.put(url, user);
   } catch (error) {
     console.error("Erro ao atualizar os limites:", error);
+  }
+};
+
+export const saveInvestment = async (id, newInvestment) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    newInvestment.id = generateUniqueId();
+    newInvestment.price = parseFloat(newInvestment.price);
+    newInvestment.fees = parseFloat(newInvestment.fees);
+
+    user.investments.push(newInvestment);
+
+    const url = `${urlUsers}/${id}`;
+    await axios.put(url, user);
+  } catch (error) {
+    console.error("Erro ao salvar o investimento:", error);
+  }
+};
+
+export const getInvestment = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    return user.investments;
+  } catch (error) {
+    console.error("Erro ao buscar os investimentos:", error);
+  }
+};
+
+export const deleteInvestment = async (id, idInvestment) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    user.investments = user.investments.filter((expense) => expense.id !== idInvestment);
+
+    const url = `${urlUsers}/${id}`;
+    await axios.put(url, user);
+  } catch (error) {
+    console.error("Erro ao atualizar despesa:", error);
   }
 };
