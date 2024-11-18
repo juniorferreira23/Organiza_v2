@@ -425,6 +425,50 @@ export const deleteInvestment = async (id, idInvestment) => {
     const url = `${urlUsers}/${id}`;
     await axios.put(url, user);
   } catch (error) {
+    console.error("Erro ao deletar Investmento:", error);
+  }
+};
+
+export const getTotalExpenses = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    let total = 0
+    user.expenses.forEach((expense) => {
+      total += expense.price
+    })
+
+    return total
+
+  } catch (error) {
     console.error("Erro ao atualizar despesa:", error);
   }
 };
+
+export const getTotalInvestments = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    const user = await getUser(id);
+
+    let total = 0
+    user.investments.forEach((investment) => {
+      total += investment.price
+    })
+
+    return total
+
+  } catch (error) {
+    console.error("Erro ao atualizar despesa:", error);
+  }
+};
+
+

@@ -2,7 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { authSession, getLimits, getSumCategories } from "../services/Users";
+import {
+  authSession,
+  getLimits,
+  getSumCategories,
+  getTotalExpenses,
+  getTotalInvestments,
+} from "../services/Users";
 import { Container, Row, Col } from "react-bootstrap";
 import UserChart from "../components/Dashboard/UserChart";
 import CardDashboard from "../components/Dashboard/CardDashboard";
@@ -10,6 +16,8 @@ import CardDashboard from "../components/Dashboard/CardDashboard";
 function Dashboard() {
   const [limits, setLimits] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const [totalExpenses, setTotalExpenses] = useState();
+  const [totalRevenue, setTotalRevenue] = useState();
 
   const router = useRouter();
 
@@ -54,17 +62,26 @@ function Dashboard() {
     setLimits(result);
   };
 
+  const handleTotals = async () => {
+    const id = getUserId();
+    const response = await getTotalExpenses(id);
+    const data = await getTotalInvestments(id);
+    setTotalExpenses(response);
+    setTotalRevenue(data)
+  };
+
   useEffect(() => {
     auth();
     handlerLimits();
     handleExpeses();
+    handleTotals();
   }, []);
 
   return (
     <Container className="py-4">
       <Row>
-        <CardDashboard Title="Total revenue" Value="100" />
-        <CardDashboard Title="Total expenses" Value="100" />
+        <CardDashboard Title="Total expenses" Value={totalExpenses} />
+        <CardDashboard Title="Total revenue" Value={totalRevenue} />
       </Row>
       <Row>
         <Col>
