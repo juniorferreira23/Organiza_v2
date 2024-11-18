@@ -66,8 +66,8 @@ function Dashboard() {
     const id = getUserId();
     const response = await getTotalExpenses(id);
     const data = await getTotalInvestments(id);
-    setTotalExpenses(response);
-    setTotalRevenue(data)
+    setTotalExpenses(response.toFixed(2));
+    setTotalRevenue(data.toFixed(2))
   };
 
   useEffect(() => {

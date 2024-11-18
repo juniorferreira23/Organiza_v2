@@ -100,13 +100,6 @@
       "password": "123123",
       "expenses": [
         {
-          "id": "4e5b-1",
-          "category": "education",
-          "date": "2024-11-16",
-          "price": 123,
-          "details": "qwe"
-        },
-        {
           "id": "4e5b-2",
           "category": "education",
           "date": "2024-11-16",
@@ -172,13 +165,6 @@
       ],
       "investments": [
         {
-          "id": "4e5b-1",
-          "date": "2024-11-18",
-          "price": 200,
-          "institution": "Clear invest",
-          "fees": "12"
-        },
-        {
           "id": "4e5b-2",
           "date": "2024-11-18",
           "price": 8000,
@@ -187,7 +173,7 @@
         }
       ],
       "limits": {
-        "education": 500,
+        "education": "200",
         "leisure": 1000,
         "health": 1000,
         "food": 100,

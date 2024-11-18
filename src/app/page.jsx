@@ -2,7 +2,6 @@
 
 import { useState, React } from "react";
 import { useRouter } from "next/navigation";
-import { Form, Container, Row, Col } from "react-bootstrap";
 import ButtonPrimary from "./components/Global/ButtonPrimary";
 import InputLabel from "./components/Global/InputLabel";
 import SectionLink from "./components/Login/SectionRegister";
@@ -13,6 +12,7 @@ import FormGlobal from "./components/Global/FormGlobal";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   const router = useRouter();
 
   const handleLogin = async (e) => {
