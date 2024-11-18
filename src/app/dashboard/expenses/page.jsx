@@ -15,7 +15,7 @@ import ButtonAdd from "@/app/components/Expenses/ButtonAdd";
 import InputLabel from "@/app/components/Global/InputLabel";
 import ButtonPrimary from "@/app/components/Global/ButtonPrimary";
 import SelectInput from "@/app/components/Global/SelectInput";
-import { capitalizeFirstLetter } from "@/app/utils/globalValidation";
+import { capitalizeFirstLetter } from "@/app/utils/formatString";
 import FormFloanting from "@/app/components/Global/FormFloating";
 import TableExpense from "@/app/components/Expenses/TableExpense";
 
@@ -48,8 +48,8 @@ function Expenses() {
   const auth = async () => {
     // Consultar autenticação do usuário
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-      router.push("/");
+    if (!user || Object.keys(user).length === 0) {
+      router.push('/');
       return;
     }
 
@@ -66,8 +66,7 @@ function Expenses() {
   const handleForm = async (e) => {
     e.preventDefault();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    const id = user.id;
+    const id = getUserId();
     const expense = {
       id: editExpenseId,
       category: categoryInput,
@@ -101,8 +100,7 @@ function Expenses() {
   };
 
   const handleExpenses = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const id = user?.id;
+    const id = getUserId();
     if (id) {
       const expenses = await getExpenses(id);
       setExpenses(expenses);
@@ -111,8 +109,7 @@ function Expenses() {
 
   const handleEdit = async (idExpense) => {
     setEditExpenseId(idExpense);
-    const user = JSON.parse(localStorage.getItem("user"));
-    const id = user.id;
+    const id = getUserId();
     const expense = await findByIdExpense(id, idExpense);
 
     setCategoryInput(expense.category);
@@ -128,8 +125,7 @@ function Expenses() {
   };
 
   const handleDelete = async (idExpense) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const id = user.id;
+    const id = getUserId()
     deleteExpense(id, idExpense)
   }
 

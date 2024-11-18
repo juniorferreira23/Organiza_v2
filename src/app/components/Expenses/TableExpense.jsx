@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import ButtonAction from "./ButtonAction";
+import ButtonAction from "../Global/ButtonAction";
 
 const TableExpense = ({ data, HandleEdit, HandleDelete }) => {
   return (
@@ -15,7 +15,7 @@ const TableExpense = ({ data, HandleEdit, HandleDelete }) => {
         >
           <thead>
             <tr className="bg-gray-200 text-gray-700">
-              <th className="px-2 py-2 border text-center">Id</th>
+              <th className="px-4 py-2 border text-center">Id</th>
               <th className="px-4 py-2 border">Category</th>
               <th className="px-4 py-2 border">Date</th>
               <th className="px-4 py-2 border">Price</th>
@@ -26,7 +26,7 @@ const TableExpense = ({ data, HandleEdit, HandleDelete }) => {
           <tbody>
             {data.map((item, index) => (
               <tr key={index} className="hover:bg-gray-100">
-                <td className="px-2 py-2 border text-center" id={item.id}>
+                <td className="px-4 py-2 border text-center" id={item.id}>
                   {index + 1}
                 </td>
                 <td className="px-4 py-2 border">{item.category}</td>

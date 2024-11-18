@@ -57,9 +57,3 @@ const validates = (name = "", email = "", password = "") => {
 };
 
 export default validates;
-
-export const capitalizeFirstLetter = (str) => {
-  if (!str) return ""; // Verifica se a string não está vazia
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-

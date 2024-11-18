@@ -134,8 +134,66 @@
           "price": 567,
           "details": "<3 teste",
           "id": "m3kueh4wi81n0nld4"
+        },
+        {
+          "id": "m3lj1kyceqpxiv9zi",
+          "category": "health",
+          "date": "2024-11-17",
+          "price": 765.89,
+          "details": "saúde"
+        },
+        {
+          "id": "m3lj1slgiozte8yoa",
+          "category": "leisure",
+          "date": "2024-11-17",
+          "price": 123,
+          "details": "teste"
+        },
+        {
+          "id": "m3lj2283isc6wm4e8",
+          "category": "transportation",
+          "date": "2024-11-17",
+          "price": 123,
+          "details": "teste"
+        },
+        {
+          "id": "m3m7usa9rin1cfp38",
+          "category": "education",
+          "date": "2024-11-17",
+          "price": 200,
+          "details": "teste"
         }
       ],
+      "earnings": [],
+      "limits": {
+        "education": 500,
+        "leisure": "1000",
+        "health": "1000",
+        "food": "100",
+        "transportation": 300
+      }
+    },
+    {
+      "id": "19a7",
+      "name": "larissa soares",
+      "email": "larissa.soares@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "earnings": [],
+      "limits": {
+        "education": 500,
+        "leisure": "1000",
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
+    },
+    {
+      "id": "3ae0",
+      "name": "teste teste",
+      "email": "teste@gmail.com",
+      "password": "123123",
+      "expenses": [],
       "earnings": [],
       "limits": {
         "education": 500,
@@ -146,9 +204,9 @@
       }
     },
     {
-      "id": "19a7",
-      "name": "larissa soares",
-      "email": "larissa.soares@gmail.com",
+      "id": "85c0",
+      "name": "lais alves",
+      "email": "lais.alves@gmail.com",
       "password": "123123",
       "expenses": [],
       "earnings": [],

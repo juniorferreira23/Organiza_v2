@@ -11,9 +11,9 @@ function Dashboard() {
   const auth = async () => {
     // Consultar autenticação do usuário
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
+    if (!user || Object.keys(user).length === 0) {
       router.push('/');
-      return
+      return;
     }
 
     const auth = await authSession(user);
