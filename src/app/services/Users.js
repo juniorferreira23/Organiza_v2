@@ -45,6 +45,29 @@ export const getUser = async (id) => {
   }
 };
 
+export const getUserName = async (id) => {
+  try {
+    const validate = validateData(id);
+    if (!validate) {
+      return;
+    }
+
+    // Consultando se existe o e-mail e senha na api users
+    const response = await axios.get(urlUsers, {
+      params: {
+        id: id,
+      },
+    });
+
+    // Selecionando os dados
+    const user = response.data[0];
+
+    return user.name;
+  } catch (error) {
+    console.error("Erro ao consultar o usuário:", error);
+  }
+};
+
 export const authLogin = async (data) => {
   try {
     const validate = validateData(data);

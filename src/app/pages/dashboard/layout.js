@@ -1,6 +1,6 @@
 "use client"
 
-import Menu from "../components/Dashboard/Menu";
+import Menu from "@/app/components/Dashboard/Menu";
 
 export default function Layout({ children }) {
   return (

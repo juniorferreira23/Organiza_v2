@@ -170,10 +170,17 @@
           "price": 8000,
           "institution": "Clear invest",
           "fees": 40
+        },
+        {
+          "date": "2024-11-19",
+          "price": 25000,
+          "institution": "easyinvest",
+          "fees": 9,
+          "id": "m3otcv5iqlf5powxh"
         }
       ],
       "limits": {
-        "education": "200",
+        "education": "323",
         "leisure": 1000,
         "health": 1000,
         "food": 100,
@@ -225,6 +232,36 @@
           "id": "m3n9lgv54ftmdb0jb"
         }
       ],
+      "limits": {
+        "education": 500,
+        "leisure": 500,
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
+    },
+    {
+      "id": "3d5b",
+      "name": "teste teste",
+      "email": "teste1@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "earnings": [],
+      "limits": {
+        "education": 500,
+        "leisure": 500,
+        "health": 500,
+        "food": 500,
+        "transportation": 300
+      }
+    },
+    {
+      "id": "ba98",
+      "name": "teste teste",
+      "email": "teste2@gmail.com",
+      "password": "123123",
+      "expenses": [],
+      "earnings": [],
       "limits": {
         "education": 500,
         "leisure": 500,

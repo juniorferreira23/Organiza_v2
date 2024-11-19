@@ -10,7 +10,7 @@ import {
   getExpenses,
   saveExpense,
   updateExpense,
-} from "../../services/Users";
+} from "@/app/services/Users";
 import ButtonAdd from "@/app/components/Expenses/ButtonAdd";
 import InputLabel from "@/app/components/Global/InputLabel";
 import ButtonPrimary from "@/app/components/Global/ButtonPrimary";

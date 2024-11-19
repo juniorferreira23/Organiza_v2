@@ -2,13 +2,12 @@
 
 import { useState, React } from "react";
 import { useRouter } from "next/navigation";
-import { Form, Container, Row, Col } from "react-bootstrap";
-import InputLabel from "../components/Global/InputLabel";
-import ButtonPrimary from "../components/Global/ButtonPrimary";
-import SectionLink from "../components/Login/SectionRegister";
+import InputLabel from "../../components/Global/InputLabel";
+import ButtonPrimary from "../../components/Global/ButtonPrimary";
+import SectionLink from "../../components/Login/SectionRegister";
 import validates from "@/app/utils/globalValidation";
-import { findByEmail, registerUser } from "../services/Users";
-import FormGlobal from "../components/Global/FormGlobal";
+import { findByEmail, registerUser } from "../../services/Users";
+import FormGlobal from "../../components/Global/FormGlobal";
 
 function LoginPage() {
   const [name, setName] = useState("");

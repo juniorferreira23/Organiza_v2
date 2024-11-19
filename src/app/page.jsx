@@ -37,7 +37,7 @@ function LoginPage() {
       if (user) {
         // Armazena o usuário no localStorage para simular uma sessão
         localStorage.setItem("user", JSON.stringify(user));
-        router.push("/dashboard");
+        router.push("pages/dashboard");
       } else {
         alert("Credenciais inválidas");
       }
@@ -48,7 +48,7 @@ function LoginPage() {
   };
 
   const handlerRegister = () => {
-    router.push("/register");
+    router.push("pages/register");
   };
 
   return (

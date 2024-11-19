@@ -46,3 +46,15 @@ body {
   align-items: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
+
+.nav-username {
+  white-space: nowrap; /* Impede quebra de texto */
+  overflow: hidden; /* Esconde conteúdo excedente */
+  text-overflow: ellipsis; /* Adiciona "..." quando oculto */
+}
+
+@media (max-width: 768px) { /* Exemplo para telas menores */
+  .nav-username {
+    display: none; /* Esconde o nome do usuário */
+  }
+}

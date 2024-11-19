@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   authSession,
@@ -8,10 +8,10 @@ import {
   getSumCategories,
   getTotalExpenses,
   getTotalInvestments,
-} from "../services/Users";
+} from "../../services/Users";
 import { Container, Row, Col } from "react-bootstrap";
-import UserChart from "../components/Dashboard/UserChart";
-import CardDashboard from "../components/Dashboard/CardDashboard";
+import UserChart from "../../components/Dashboard/UserChart";
+import CardDashboard from "../../components/Dashboard/CardDashboard";
 
 function Dashboard() {
   const [limits, setLimits] = useState([]);
