@@ -1,6 +1,7 @@
 const { default: axios } = require("axios");
 
-const urlUsers = "http://localhost:3001/users";
+// const urlUsers = "http://localhost:3001/users";
+const urlUsers = "https://organiza-v2.vercel.app:3001/users";
 
 const validateData = (data) => {
   if (typeof data === String) {
